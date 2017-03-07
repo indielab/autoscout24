@@ -627,16 +627,15 @@ namespace Indielab\AutoScout24;
  */
 class Vehicle
 {
-	private $_data = null;
-	
-	public function __construct(array $data)
-	{
-		$this->_data = $data;
-	}
-	
-	public function getMakeText()
-	{
-		return $this->_data['MakeText'];
-	}
-	
+    private $_data = null;
+    
+    public function __construct(array $data)
+    {
+        $this->_data = $data;
+    }
+    
+    public function getMakeText()
+    {
+        return $this->_data['MakeText'];
+    }
 }
