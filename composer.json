@@ -1,0 +1,30 @@
+{
+    "name": "indielab/autoscout24",
+    "type": "library",
+    "description": "AutoScout24 PHP API.",
+    "keywords": ["php", "api", "autoscout24"],
+    "homepage": "https://github.com/indielab/autoscout24",
+    "authors": [
+        {
+            "name": "Basil Suter",
+            "homepage": "https://github.com/nadar",
+            "role": "Creator"
+        }
+    ],
+    "require": {
+        "curl/curl": "^1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Indielab\\AutoScout24\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Indielab\\AutoScout24\\Tests\\": "tests/"
+        }
+    }
+}
