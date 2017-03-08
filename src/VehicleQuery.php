@@ -2,10 +2,19 @@
 
 namespace Indielab\AutoScout24;
 
+/**
+ * Vehicle Query Class.
+ * 
+ * @author Basil Suter <basil@nadar.io>
+ */
 class VehicleQuery
 {
     protected $client = null;
     
+    /**
+     * 
+     * @param Client $client
+     */
     public function setClient(Client $client)
     {
         $this->client = $client;
@@ -13,6 +22,11 @@ class VehicleQuery
     
     private $_where = [];
     
+    /**
+     * 
+     * @param array $args
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
     public function where(array $args)
     {
         foreach ($args as $key => $value) {
@@ -22,26 +36,95 @@ class VehicleQuery
         return $this;
     }
     
+    /**
+     * 
+     * @param integer $typeId Integer values with types, avialable list:
+     * - 10: Personenwagen
+     * - 20: Leichte Nutzfahrzeuge
+     * 
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
+    public function setVehicleTypeId($typeId)
+    {
+        return $his->where(['vehtyp' => $typeId]);
+    }
+    
+    /**
+     * 
+     * @param string $type Sort parameter to set, available list:
+     * - price_asc: Sort price ascending
+     * - price_desc: Sort price descending
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
+    public function setVehicleSorting($type)
+    {
+        return $this->where(['sort' => $type]);
+    }
+    
+    /**
+     * 
+     * @param Integer $year Year from
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
+    public function setYearTo($year)
+    {
+        return $this->where(['yearto' => $year]);
+    }
+    
+    /**
+     * 
+     * @param integer $equipmentId Equipment Paramters like: 10 = Klimatisierung.
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
+    public function setEquipment($equipmentId)
+    {
+        return $this->where(['equipor' => $equipmentId]);
+    }
+    
+    /**
+     * 
+     * @param unknown $page
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
     public function setPage($page)
     {
         return $this->where(['page' => $page]);
     }
 
+    /**
+     * 
+     * @param unknown $amount
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
     public function setItemsPerPage($amount)
     {
         return $this->where(['itemsPerPage' => $amount]);
     }
     
+    /**
+     * 
+     * @param unknown $makeId
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
     public function setMake($makeId)
     {
         return $this->where(['make' => $makeId]);
     }
     
+    /**
+     * 
+     * @param unknown $modelId
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
     public function setModel($modelId)
     {
         return $this->where(['model' => $modelId]);
     }
     
+    /**
+     * 
+     * @return mixed
+     */
     public function getResponse()
     {
         return $this->client->endpointResponse('vehicles', $this->_where);
