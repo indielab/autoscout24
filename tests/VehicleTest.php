@@ -14,11 +14,6 @@ class VehicleTest extends AutoScoutTestCase
         $iteration = $query->find();
         $this->assertInstanceOf('Indielab\AutoScout24\VehicleQueryIterator', $iteration);
         
-        foreach ($iteration as $item) {
-            echo $item->getMakeText();
-            
-            break;
-        }
         
         $this->assertSame(1, $iteration->currentPage);
         $this->assertSame(25, $iteration->currentPageResultCount);
@@ -33,7 +28,16 @@ class VehicleTest extends AutoScoutTestCase
         $iteration = $query->findAll();
         
         foreach ($iteration as $i => $car) {
-            echo $i . " => " .$car->getTypeNameFull() . PHP_EOL;
+            //echo $i . " => " .$car->getId() . PHP_EOL;
         }
+    }
+    
+    public function testFindOne()
+    {
+        $query = new VehicleQuery();
+        $query->setClient($this->client);
+        $car = $query->findOne(4592990);
+        
+        $this->assertNotNull($car);
     }
 }

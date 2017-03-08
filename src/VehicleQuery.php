@@ -177,4 +177,16 @@ class VehicleQuery
         $iterator->totalResultCount = $each['TotalMatches'];
         return $iterator;
     }
+    
+    /**
+     * 
+     * @param integer $id The id of the vehicle
+     * @return \Indielab\AutoScout24\Vehicle
+     */
+    public function findOne($id)
+    {
+        $response = $this->client->endpointResponse('vehicles/'.$id);
+        
+        return (new Vehicle($response));
+    }
 }
