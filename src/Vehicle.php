@@ -284,7 +284,7 @@ class Vehicle
     
     public function getFuelTypeText()
     {
-        return $this->_datæ['FuelTypeText'];
+        return $this->_data['FuelTypeText'];
     }
     
     public function getHasWarranty()
