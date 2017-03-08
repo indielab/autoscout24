@@ -46,7 +46,7 @@ class VehicleQuery
      */
     public function setVehicleTypeId($typeId)
     {
-        return $his->where(['vehtyp' => $typeId]);
+        return $this->where(['vehtyp' => $typeId]);
     }
     
     /**
@@ -164,6 +164,7 @@ class VehicleQuery
             $query = new self();
             $query->setClient($this->client);
             $query->setPage($i);
+            $query->where($this->_where);
             $r = $query->getResponse();
             
             $data = array_merge($data, $r['Vehicles']);
