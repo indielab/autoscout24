@@ -11,6 +11,14 @@ class VehicleQueryIterator implements \Iterator
         $this->_data = $data;
     }
     
+    public $totalResultCount;
+    
+    public $totalPages;
+    
+    public $currentPage;
+    
+    public $currentPageResultCount;
+    
     public function rewind()
     {
         return reset($this->_data);

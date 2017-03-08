@@ -12,18 +12,12 @@ $client = new Client('1234', '1234');
 $query = new VehicleQuery();
 $query->setClient($client);
 foreach ($cars->find() as $car) {
-    $car->getName();
+    $car->getTypeNameFull();
 }
 ```
 
-An example with where parameters:
+In order to generate a response without pagination use:
 
 ```php
-$client = new Client('1234', '1234');
-
-$cars = new Vehicles();
-$cars->setClient($client);
-foreach ($cars->where(['this' => 'that'])->find() as $car) {
-    $car->getName();
-}
-``
+$query->findAll();
+```
