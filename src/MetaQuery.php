@@ -8,7 +8,7 @@ class MetaQuery extends Query
 {
     /**
      * Find PKWs.
-     * 
+     *
      * @return \Indielab\AutoScout24\MetaQueryIterator
      */
     public function findPkw()
@@ -20,7 +20,7 @@ class MetaQuery extends Query
     
     /**
      * Find Nutzfahrzeuge.
-     * 
+     *
      * @return \Indielab\AutoScout24\MetaQueryIterator
      */
     public function findNfz()
@@ -32,7 +32,7 @@ class MetaQuery extends Query
     
     /**
      * Find LKWs.
-     * 
+     *
      * @return \Indielab\AutoScout24\MetaQueryIterator
      */
     public function findLkw()
@@ -44,7 +44,7 @@ class MetaQuery extends Query
     
     /**
      * Find Bikes.
-     * 
+     *
      * @return \Indielab\AutoScout24\MetaQueryIterator
      */
     public function findBike()
@@ -56,7 +56,7 @@ class MetaQuery extends Query
     
     /**
      * Find Campers.
-     * 
+     *
      * @return \Indielab\AutoScout24\MetaQueryIterator
      */
     public function findCamper()

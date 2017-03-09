@@ -40,4 +40,16 @@ class VehicleTest extends AutoScoutTestCase
         
         $this->assertNotNull($car);
     }
+    
+    public function testFindAllWithFilter()
+    {
+        $query = new VehicleQuery();
+        $query->setClient($this->client);
+        
+        $cars = $query->setMake(55)->findAll();
+        
+        foreach ($cars as $car) {
+            $this->assertSame(55, $car->getMakeId());
+        }
+    }
 }

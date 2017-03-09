@@ -4,7 +4,7 @@ namespace Indielab\AutoScout24;
 
 /**
  * Meta Query Iterator.
- * 
+ *
  * @method \Indielab\AutoScout24\Meta lng()
  * @method \Indielab\AutoScout24\Meta page();
  * @method \Indielab\AutoScout24\Meta itemsPerPage()
@@ -56,7 +56,7 @@ namespace Indielab\AutoScout24;
  * @method \Indielab\AutoScout24\Meta includetoorder()
  * @method \Indielab\AutoScout24\Meta hasimage()
  * @method \Indielab\AutoScout24\Meta logo()
- * 
+ *
  * @author Basil Suter <basil@nadar.io>
  */
 class MetaQueryIterator implements \Iterator
@@ -98,7 +98,7 @@ class MetaQueryIterator implements \Iterator
     
     /**
      * Filters the query iterator by one item and returns the Object.
-     * 
+     *
      * @param string $varName
      * @return \Indielab\AutoScout24\Meta
      */
@@ -110,7 +110,7 @@ class MetaQueryIterator implements \Iterator
     }
     
     /**
-     * 
+     *
      * @param unknown $name
      * @param unknown $args
      * @return \Indielab\AutoScout24\Meta

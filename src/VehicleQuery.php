@@ -6,7 +6,7 @@ use Indielab\AutoScout24\Base\Query;
 
 /**
  * Vehicle Query Class.
- * 
+ *
  * @author Basil Suter <basil@nadar.io>
  */
 class VehicleQuery extends Query
@@ -14,7 +14,7 @@ class VehicleQuery extends Query
     private $_where = [];
     
     /**
-     * 
+     *
      * @param array $args
      * @return \Indielab\AutoScout24\VehicleQuery
      */
@@ -28,11 +28,11 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @param integer $typeId Integer values with types, avialable list:
      * - 10: Personenwagen
      * - 20: Leichte Nutzfahrzeuge
-     * 
+     *
      * @return \Indielab\AutoScout24\VehicleQuery
      */
     public function setVehicleTypeId($typeId)
@@ -41,7 +41,7 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @param string $type Sort parameter to set, available list:
      * - price_asc: Sort price ascending
      * - price_desc: Sort price descending
@@ -53,7 +53,7 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @param Integer $year Year from
      * @return \Indielab\AutoScout24\VehicleQuery
      */
@@ -63,7 +63,7 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @param integer $equipmentId Equipment Paramters like: 10 = Klimatisierung.
      * @return \Indielab\AutoScout24\VehicleQuery
      */
@@ -73,7 +73,7 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @param unknown $page
      * @return \Indielab\AutoScout24\VehicleQuery
      */
@@ -83,7 +83,7 @@ class VehicleQuery extends Query
     }
 
     /**
-     * 
+     *
      * @param unknown $amount
      * @return \Indielab\AutoScout24\VehicleQuery
      */
@@ -93,7 +93,7 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @param unknown $makeId
      * @return \Indielab\AutoScout24\VehicleQuery
      */
@@ -103,7 +103,7 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @param unknown $modelId
      * @return \Indielab\AutoScout24\VehicleQuery
      */
@@ -113,7 +113,7 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @return mixed
      */
     public function getResponse()
@@ -122,7 +122,7 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @param array $vehicles
      * @param unknown $currentPageResultCount
      * @param unknown $currentPage
@@ -130,7 +130,7 @@ class VehicleQuery extends Query
      * @param unknown $totalPages
      * @return \Indielab\AutoScout24\VehicleQueryIterator
      */
-    private function createIterator(array $vehicles, $currentPageResultCount,  $currentPage, $totalResultCount, $totalPages)
+    private function createIterator(array $vehicles, $currentPageResultCount, $currentPage, $totalResultCount, $totalPages)
     {
         $iterator = new VehicleQueryIterator($vehicles);
         $iterator->currentPageResultCount = $currentPageResultCount;
@@ -148,7 +148,7 @@ class VehicleQuery extends Query
     {
         $each = $this->getResponse();
         
-        return $this->createIterator($each['Vehicles'], $each['ItemsOnPage'],  $each['CurrentPage'], $each['TotalMatches'], $each['TotalPages']);
+        return $this->createIterator($each['Vehicles'], $each['ItemsOnPage'], $each['CurrentPage'], $each['TotalMatches'], $each['TotalPages']);
     }
     
     /**
@@ -161,7 +161,7 @@ class VehicleQuery extends Query
      */
     public function findAll()
     {
-        $each = $this->getClient()->endpointResponse('vehicles');
+        $each = $this->getClient()->endpointResponse('vehicles', $this->_where);
         
         $data = $each['Vehicles'];
         
@@ -179,7 +179,7 @@ class VehicleQuery extends Query
     }
     
     /**
-     * 
+     *
      * @param integer $id The id of the vehicle
      * @return \Indielab\AutoScout24\Vehicle
      */
