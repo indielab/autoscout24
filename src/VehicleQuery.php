@@ -2,24 +2,15 @@
 
 namespace Indielab\AutoScout24;
 
+use Indielab\AutoScout24\Base\Query;
+
 /**
  * Vehicle Query Class.
  * 
  * @author Basil Suter <basil@nadar.io>
  */
-class VehicleQuery
+class VehicleQuery extends Query
 {
-    protected $client = null;
-    
-    /**
-     * 
-     * @param Client $client
-     */
-    public function setClient(Client $client)
-    {
-        $this->client = $client;
-    }
-    
     private $_where = [];
     
     /**
@@ -127,7 +118,26 @@ class VehicleQuery
      */
     public function getResponse()
     {
-        return $this->client->endpointResponse('vehicles', $this->_where);
+        return $this->getClient()->endpointResponse('vehicles', $this->_where);
+    }
+    
+    /**
+     * 
+     * @param array $vehicles
+     * @param unknown $currentPageResultCount
+     * @param unknown $currentPage
+     * @param unknown $totalResultCount
+     * @param unknown $totalPages
+     * @return \Indielab\AutoScout24\VehicleQueryIterator
+     */
+    private function createIterator(array $vehicles, $currentPageResultCount,  $currentPage, $totalResultCount, $totalPages)
+    {
+        $iterator = new VehicleQueryIterator($vehicles);
+        $iterator->currentPageResultCount = $currentPageResultCount;
+        $iterator->currentPage = $currentPage;
+        $iterator->totalPages = $totalPages;
+        $iterator->totalResultCount = $totalResultCount;
+        return $iterator;
     }
     
     /**
@@ -138,12 +148,7 @@ class VehicleQuery
     {
         $each = $this->getResponse();
         
-        $iterator = new VehicleQueryIterator($each['Vehicles']);
-        $iterator->currentPageResultCount = $each['ItemsOnPage'];
-        $iterator->currentPage = $each['CurrentPage'];
-        $iterator->totalPages = $each['TotalPages'];
-        $iterator->totalResultCount = $each['TotalMatches'];
-        return $iterator;
+        return $this->createIterator($each['Vehicles'], $each['ItemsOnPage'],  $each['CurrentPage'], $each['TotalMatches'], $each['TotalPages']);
     }
     
     /**
@@ -156,13 +161,13 @@ class VehicleQuery
      */
     public function findAll()
     {
-        $each = $this->client->endpointResponse('vehicles');
+        $each = $this->getClient()->endpointResponse('vehicles');
         
         $data = $each['Vehicles'];
         
         for ($i=2;$i<=$each['TotalPages'];$i++) {
             $query = new self();
-            $query->setClient($this->client);
+            $query->setClient($this->getClient());
             $query->setPage($i);
             $query->where($this->_where);
             $r = $query->getResponse();
@@ -170,12 +175,7 @@ class VehicleQuery
             $data = array_merge($data, $r['Vehicles']);
         }
         
-        $iterator = new VehicleQueryIterator($data);
-        $iterator->currentPageResultCount = $each['TotalMatches'];
-        $iterator->currentPage = 1;
-        $iterator->totalPages = 1;
-        $iterator->totalResultCount = $each['TotalMatches'];
-        return $iterator;
+        return $this->createIterator($data, $each['TotalMatches'], 1, $each['TotalMatches'], 1);
     }
     
     /**
@@ -185,7 +185,7 @@ class VehicleQuery
      */
     public function findOne($id)
     {
-        $response = $this->client->endpointResponse('vehicles/'.$id);
+        $response = $this->getClient()->endpointResponse('vehicles/'.$id);
         
         return (new Vehicle($response));
     }
