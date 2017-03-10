@@ -16,6 +16,23 @@ class Vehicle
     }
     
     /**
+     * Parser the wired date string from autoscout to unix timestamps.
+     *
+     * @param string $date String from AutoScout like `/Date(1486132651000+0100)/`
+     * @return integer
+     */
+    public static function dateParser($date)
+    {
+        $match = preg_match('/([0-9]+)/', $date, $result);
+        
+        if ($match === 1 && isset($result[0])) {
+            return (int) $result[0]/1000;
+        }
+        
+        return 0;
+    }
+    
+    /**
      * @return integer The vevicle id to query any further infos.
      */
     public function getId()
@@ -172,24 +189,36 @@ class Vehicle
         return $this->_data['Cylinders'];
     }
     
+    /**
+     * @return integer Returns Unix timestamp
+     */
     public function getDateCreated()
     {
-        return $this->_data['DateCreated'];
+        return self::dateParser($this->_data['DateCreated']);
     }
     
+    /**
+     * @return integer Returns Unix timestamp
+     */
     public function getDateModified()
     {
-        return $this->_data['DateModified'];
+        return self::dateParser($this->_data['DateModified']);
     }
     
+    /**
+     * @return integer Returns Unix timestamp
+     */
     public function getDateOfLastInspection()
     {
-        return $this->_data['DateOfLastInspection'];
+        return self::dateParser($this->_data['DateOfLastInspection']);
     }
     
+    /**
+     * @return integer Returns Unix timestamp
+     */
     public function getDateTopListing()
     {
-        return $this->_data['DateTopListing'];
+        return self::dateParser($this->_data['DateTopListing']);
     }
     
     public function getDealerPrice()

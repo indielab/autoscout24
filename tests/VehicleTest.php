@@ -3,6 +3,7 @@
 namespace Indielab\AutoScout24\Tests;
 
 use Indielab\AutoScout24\VehicleQuery;
+use Indielab\AutoScout24\Vehicle;
 
 class VehicleTest extends AutoScoutTestCase
 {
@@ -51,5 +52,22 @@ class VehicleTest extends AutoScoutTestCase
         foreach ($cars as $car) {
             $this->assertSame(55, $car->getMakeId());
         }
+    }
+    
+    public function testDateParser()
+    {
+        $date = '/Date(1486132651000+0100)/';
+        
+        $r = Vehicle::dateParser($date);
+        
+        $this->assertSame(1486132651, $r);
+    }
+    
+    public function testDateCar()
+    {
+        $query = new VehicleQuery();
+        $query->setClient($this->client);
+        $car = $query->findOne(4592990);
+        $this->assertSame(1486132651, $car->getDateCreated());
     }
 }
