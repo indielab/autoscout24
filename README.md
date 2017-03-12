@@ -1,5 +1,9 @@
 # AutoScout24 PHP REST API CLIENT
 
+[![Latest Stable Version](https://poser.pugx.org/indielab/autoscout24/v/stable)](https://packagist.org/packages/indielab/autoscout24)
+[![Total Downloads](https://poser.pugx.org/indielab/autoscout24/downloads)](https://packagist.org/packages/indielab/autoscout24)
+[![License](https://poser.pugx.org/indielab/autoscout24/license)](https://packagist.org/packages/indielab/autoscout24)
+
 A very easy to use library to work with the AutoScout24 REST Api.
 
 ## Examples
