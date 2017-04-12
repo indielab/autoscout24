@@ -137,6 +137,8 @@ class VehicleQuery extends Query
     public function orFilter($key, $value)
     {
         $this->_orFilters[$key] = $value;
+        
+        return $this;
     }
     
     /**
