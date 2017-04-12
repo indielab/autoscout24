@@ -203,7 +203,7 @@ class VehicleQuery extends Query
             $vehicles = [];
             
             foreach ($this->_orFilters as $column => $search) {
-                $vehicles = array_merge(self::searchColumns($vehicles, $column, $search), $vehicles);
+                $vehicles = self::searchColumns($data, $column, $search);
             }
         }
         
