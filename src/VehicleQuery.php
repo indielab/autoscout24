@@ -136,7 +136,7 @@ class VehicleQuery extends Query
     
     public function orFilter($key, $value)
     {
-        $this->_orFilters[$key] = $value;
+        $this->_orFilters[] = [$key, $value];
         
         return $this;
     }
@@ -204,7 +204,8 @@ class VehicleQuery extends Query
             
             $vehicles = [];
             
-            foreach ($this->_orFilters as $column => $search) {
+            foreach ($this->_orFilters as $keys) {
+                list($column, $search) = $keys;
                 $vehicles = self::searchColumns($data, $column, $search);
             }
         }
