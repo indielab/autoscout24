@@ -132,6 +132,13 @@ class VehicleQuery extends Query
         return $this;
     }
     
+    private $_orFilters = [];
+    
+    public function orFilter($key, $value)
+    {
+        $this->_orFilters[$key] = $value;
+    }
+    
     /**
      * Search for columns with the given search value, returns the full array with all valid items.
      *
@@ -188,6 +195,16 @@ class VehicleQuery extends Query
     {
         foreach ($this->_filters as $column => $search) {
             $vehicles = self::searchColumns($vehicles, $column, $search);
+        }
+
+        if (!empty($this->_orFilters)) {
+            $data = $vehicles;
+            
+            $vehicles = [];
+            
+            foreach ($this->_orFilters as $column => $search) {
+                $vehicles = array_merge(self::searchColumns($vehicles, $column, $search), $vehicles);
+            }
         }
         
         $iterator = new VehicleQueryIterator($vehicles);
