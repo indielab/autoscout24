@@ -19,7 +19,7 @@ class VehicleTest extends AutoScoutTestCase
         $this->assertSame(1, $iteration->currentPage);
         $this->assertSame(25, $iteration->currentPageResultCount);
         $this->assertSame(2, $iteration->totalPages);
-        $this->assertSame(40, $iteration->totalResultCount);
+        $this->assertSame(35, $iteration->totalResultCount);
     }
     
     public function testFindAllVehicles()
@@ -37,7 +37,7 @@ class VehicleTest extends AutoScoutTestCase
     {
         $query = new VehicleQuery();
         $query->setClient($this->client);
-        $car = $query->findOne(4592990);
+        $car = $query->findOne(4024094);
         
         $this->assertNotNull($car);
     }
@@ -67,7 +67,17 @@ class VehicleTest extends AutoScoutTestCase
     {
         $query = new VehicleQuery();
         $query->setClient($this->client);
-        $car = $query->findOne(4592990);
-        $this->assertSame(1486132651, $car->getDateCreated());
+        $car = $query->findOne(4024094);
+        $this->assertSame(1464614593, $car->getDateCreated());
+    }
+    
+    public function testFilterQuery()
+    {
+        $query = new VehicleQuery();
+        $query->setClient($this->client);
+        $query->filter('TransmissionTypeId', 0);
+        $iteration = $query->findAll();
+        
+        $this->assertSame(0, count($iteration));
     }
 }

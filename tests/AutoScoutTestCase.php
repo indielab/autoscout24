@@ -11,6 +11,6 @@ class AutoScoutTestCase extends TestCase
     
     protected function setUp()
     {
-        $this->client = new Client('XXXX', 'YYYYY');
+        $this->client = new Client('64300', '64300');
     }
 }

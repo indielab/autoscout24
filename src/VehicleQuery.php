@@ -112,6 +112,60 @@ class VehicleQuery extends Query
         return $this->where(['model' => $modelId]);
     }
     
+    private $_filters = [];
+    
+    /**
+     * Add arrayable filters on client side, this is performance ineffcient.
+     * 
+     * ```php
+     * $query->filter('TransmissionTypeId', 20);
+     * ```
+     * 
+     * @param string $key
+     * @param v $value
+     * @return \Indielab\AutoScout24\VehicleQuery
+     */
+    public function filter($key, $value)
+    {
+        $this->_filters[$key] = $value;
+        
+        return $this;
+    }
+    
+    /**
+     * Search for columns with the given search value, returns the full array with all valid items.
+     *
+     * > This function is not casesensitive, which means FOO will match Foo, foo and FOO
+     *
+     * ```php
+     * $array = [
+     *     ['name' => 'luya', 'userId' => 1],
+     *     ['name' => 'nadar', 'userId' => 1],
+     * ];
+     *
+     * $result = ArrayHelper::searchColumn($array, 'userId', '1');
+     *
+     * // output:
+     * // array (
+     * //     array ('name' => 'luya', 'userId' => 1),
+     * //     array ('name' => 'nadar', 'userId' => 1)
+     * // );
+     * ```
+     *
+     * @param array $array The multidimensional array input
+     * @param string $column The column to compare with $search string
+     * @param mixed $search The search string to compare with the column value.
+     * @return array Returns an array with all valid elements.
+     */
+    public static function searchColumns(array $array, $column, $search)
+    {
+        $keys = array_filter($array, function($var) use($column, $search) {
+            return strcasecmp($search, $var[$column]) == 0 ? true : false;
+        });
+    
+        return $keys;
+    }
+    
     /**
      *
      * @return mixed
@@ -132,6 +186,10 @@ class VehicleQuery extends Query
      */
     private function createIterator(array $vehicles, $currentPageResultCount, $currentPage, $totalResultCount, $totalPages)
     {
+        foreach ($this->_filters as $column => $search) {
+            $vehicles = self::searchColumns($vehicles, $column, $search);
+        }
+        
         $iterator = new VehicleQueryIterator($vehicles);
         $iterator->currentPageResultCount = $currentPageResultCount;
         $iterator->currentPage = $currentPage;
