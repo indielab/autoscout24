@@ -6,7 +6,7 @@
 
 A very easy to use library to work with the AutoScout24 REST Api.
 
-## Examples
+## Examples
 
 Before using the library you have to obtain your *cuid* and *memberid* from the AutoScout24 Support.
 
@@ -27,7 +27,7 @@ foreach ($cars->find() as $car) {
 The above code is equal with the following short notation:
 
 ```php
-$client = new Clien($cuid, $memberId);
+$client = new Client($cuid, $memberId);
 $cars = (new VehicleQuery())->setClient($client)->find();
 foreach ($cars as $car) {
     $car->getId();
@@ -37,7 +37,7 @@ foreach ($cars as $car) {
 In order to generate a response without pagination use:
 
 ```php
-$client = new Clien($cuid, $memberId);
+$client = new Client($cuid, $memberId);
 $cars = (new VehicleQuery())->setClient($client)->findAll();
 ```
 
@@ -51,7 +51,7 @@ $car = (new VehicleQuery())->setClient($client)->findOne($carId);
 Filter and Sorting:
 
 ```php
-$client = new Clien($cuid, $memberId);
+$client = new Client($cuid, $memberId);
 $cars = (new VehicleQuery())->setClient($client)->setVehicleSorting('price_desc')->find();
 ```
 
