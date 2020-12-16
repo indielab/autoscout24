@@ -241,7 +241,7 @@ class VehicleQuery extends Query
     {
         $each = $this->getClient()->endpointResponse('vehicles', $this->_where);
         
-        if (!array_key_exists('Vehicles', $each)) {
+        if (empty($each) || !array_key_exists('Vehicles', $each)) {
             return $this->createIterator([], 0, 0, 0, 0);
         }
 
