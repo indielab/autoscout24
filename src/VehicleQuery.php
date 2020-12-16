@@ -241,6 +241,10 @@ class VehicleQuery extends Query
     {
         $each = $this->getClient()->endpointResponse('vehicles', $this->_where);
         
+        if (!array_key_exists('Vehicles', $each)) {
+            return $this->createIterator([], 0, 0, 0, 0);
+        }
+
         $data = $each['Vehicles'];
         
         for ($i=2;$i<=$each['TotalPages'];$i++) {
