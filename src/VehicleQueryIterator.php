@@ -2,7 +2,9 @@
 
 namespace Indielab\AutoScout24;
 
-class VehicleQueryIterator implements \Iterator
+use Countable;
+
+class VehicleQueryIterator implements \Iterator, Countable
 {
     private $_data = null;
     
@@ -19,6 +21,11 @@ class VehicleQueryIterator implements \Iterator
     
     public $currentPageResultCount;
     
+    public function count()
+    {
+        return count($this->_data);
+    }
+
     public function rewind()
     {
         return reset($this->_data);
