@@ -1,3 +1,5 @@
+> DANGER: The AutoScout24 Endpoint is only available if they whiteliste your provided IP Address, this makes it very hard to develop local - as you can imagine. An incredible bad solution for such a big company, just saying. Maybe try to use another car sharing platform which provides a more modern technology approach!
+
 # AutoScout24 PHP REST API CLIENT
 
 [![Latest Stable Version](https://poser.pugx.org/indielab/autoscout24/v/stable)](https://packagist.org/packages/indielab/autoscout24)
