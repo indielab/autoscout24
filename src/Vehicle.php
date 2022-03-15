@@ -435,7 +435,7 @@ class Vehicle
     
     public function getModelGroupId()
     {
-        return $thsi->_data['ModelGroupId'];
+        return $this->_data['ModelGroupId'];
     }
     
     public function getModelGroupText()
@@ -501,7 +501,7 @@ class Vehicle
      */
     public function getPriceNew()
     {
-        return $ths->_data['PriceNew'];
+        return $this->_data['PriceNew'];
     }
     
     /**
