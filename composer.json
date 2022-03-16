@@ -12,6 +12,7 @@
         }
     ],
     "require": {
+        "php": ">=7.1",
         "curl/curl": "^1.6"
     },
     "require-dev": {
