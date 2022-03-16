@@ -17,6 +17,10 @@ class Client
         $this->cuid = $cuid;
         $this->member = $member;
         $this->group = $group;
+        
+        if (empty($member) && empty($group)) {
+               throw new Exception("Either the member or group param is required and can not be empty.");
+        }
     }
     
     public function endpointResponse($name, array $args = [])
