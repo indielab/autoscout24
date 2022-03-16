@@ -6,22 +6,27 @@ use Curl\Curl;
 
 class Client
 {
-    public $cuid;
-    
-    public $member;
+    public int $cuid;
+
+    public ?int $member, $group;
     
     const API_URL = 'https://www.autoscout24.ch/api/hci/v3/json/';
     
-    public function __construct($cuid, $member)
+    public function __construct(int $cuid, ?int $member, ?int $group)
     {
         $this->cuid = $cuid;
         $this->member = $member;
+        $this->group = $group;
+        
+        if (empty($member) && empty($group)) {
+               throw new Exception("Either the member or group param is required and can not be empty.");
+        }
     }
     
     public function endpointResponse($name, array $args = [])
     {
         $curl = new Curl();
-        $curl->get(self::API_URL . $name, array_merge($args, ['cuid' => $this->cuid, 'member' => $this->member]));
+        $curl->get(self::API_URL . $name, array_merge($args, ['cuid' => $this->cuid, 'member' => $this->member, 'group' => $this->group]));
         
         if (!$curl->error) {
             return $this->decodeResponse($curl->response);
