@@ -248,32 +248,32 @@ class Vehicle
     
     public function getOptionalEquipment()
     {
-        return $this->_data['Equipment']['AutoIDatEquipment']['OptionalEquipment'];
+        return $this->_data['Equipment']['AutoIDatEquipment']['OptionalEquipment'] ?? null;
     }
     
     public function getStandardEquipment()
     {
-        return $this->_data['Equipment']['AutoIDatEquipment']['StandardEquipment'];
+        return $this->_data['Equipment']['AutoIDatEquipment']['StandardEquipment'] ?? null;
     }
     
     public function getStandardItems()
     {
-        return $this->_data['Equipment']['AutoIDatEquipment']['StandardItems'];
+        return $this->_data['Equipment']['AutoIDatEquipment']['StandardItems'] ?? null;
     }
 
     public function getOptionalItems()
     {
-        return $this->_data['Equipment']['AutoIDatEquipment']['OptionalItems'];
+        return $this->_data['Equipment']['AutoIDatEquipment']['OptionalItems'] ?? null;
     }
     
     public function getStandardPackages()
     {
-        return $this->_data['Equipment']['AutoIDatEquipment']['StandardPackages'];
+        return $this->_data['Equipment']['AutoIDatEquipment']['StandardPackages'] ?? null;
     }
     
     public function getOptionalPackages()
     {
-        return $this->_data['Equipment']['AutoIDatEquipment']['OptionalPackages'];
+        return $this->_data['Equipment']['AutoIDatEquipment']['OptionalPackages'] ?? null;
     }
     
     public function getEurotaxEquipment()
