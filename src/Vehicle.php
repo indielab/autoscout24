@@ -529,7 +529,7 @@ class Vehicle
     
     public function getSeller()
     {
-        throw new Exception("TODO! Returns Seller Object.");
+        return new Seller($this->_data['Seller']);
     }
     
     /**
