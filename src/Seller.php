@@ -2,6 +2,9 @@
 
 namespace Indielab\AutoScout24;
 
+/**
+* @since 1.1
+*/
 class Seller
 {
 
