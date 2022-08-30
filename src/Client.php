@@ -26,7 +26,7 @@ class Client
     public function endpointResponse($name, array $args = [])
     {
         $curl = new Curl();
-        $curl->get(self::API_URL . $name, array_merge($args, ['cuid' => $this->cuid, 'member' => $this->member, 'group' => $this->group]));
+        $curl->get(self::API_URL . $name, array_merge($args, array_filter(['cuid' => $this->cuid, 'member' => $this->member, 'group' => $this->group])));
         
         if (!$curl->error) {
             return $this->decodeResponse($curl->response);
