@@ -12,7 +12,7 @@ class Client
     
     const API_URL = 'https://www.autoscout24.ch/api/hci/v3/json/';
     
-    public function __construct(int $cuid, ?int $member, ?int $group)
+    public function __construct(int $cuid, ?int $member = 0, ?int $group = 0)
     {
         $this->cuid = $cuid;
         $this->member = $member;
