@@ -629,6 +629,6 @@ class Vehicle
 
     public function getLeasingCalculatorUrl()
     {
-        return $this->__data['LeasingCalculatorUrl']
+        return $this->__data['LeasingCalculatorUrl'];
     }
 }
