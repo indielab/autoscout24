@@ -626,4 +626,9 @@ class Vehicle
     {
         return $this->_data['Width'];
     }
+
+    public function getLeasingCalculatorUrl()
+    {
+        return $this->__data['LeasingCalculatorUrl']
+    }
 }
