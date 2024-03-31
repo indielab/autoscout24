@@ -275,6 +275,16 @@ class Vehicle
     {
         return $this->_data['Equipment']['AutoIDatEquipment']['OptionalPackages'] ?? null;
     }
+
+    public function getStandardEquipmentFlatList()
+    {
+        return $this->_data['Equipment']['StandardEquipmentFlatList'] ?? null;
+    }
+
+    public function getOptionalEquipmentFlatList()
+    {
+        return $this->_data['Equipment']['OptionalEquipmentFlatList'] ?? null;
+    }
     
     public function getEurotaxEquipment()
     {
